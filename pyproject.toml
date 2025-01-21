@@ -5,21 +5,6 @@ description = "AI powered tutor"
 authors = [
     { name = "MIT Open Learning Engineering", email = "odl-devops@mit.edu" }
 ]
-dependencies=[
-"openai",
-"PyGithub",
-"tiktoken",
-"langchain",
-"langgraph",
-"langchain_openai",
-"langchain_community", 
-"langchain_anthropic",
-"langchain-together",
-"langchain_core",
-"langchain_chroma",
-"langchain_experimental",
-"e2b-code-interpreter",
-]
 
 [build-system]
 requires = ["hatchling"]
