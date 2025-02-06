@@ -214,8 +214,7 @@ class GraphTutor(Tutor):
         #     max_tokens=max_tokens
         # )
         final_state = self.app.invoke(
-            {"messages": prompt},
-            config={"configurable": {"thread_id": 42}}
+            {"messages": prompt}
         )
         response = self.final_response
         tools_used = self.tools_used
