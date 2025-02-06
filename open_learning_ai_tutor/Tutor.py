@@ -85,7 +85,7 @@ class Tutor():
     
 class GraphTutor(Tutor):
 
-    def __init__(self,client,pb,sol,model="gpt-4o-mini",intermediary=None,intent_history = [],assessment_history=[],is_open=True, version="V1", tools = None) -> None:
+    def __init__(self,client,pb,sol,model="gpt-4o-mini",intermediary=None,intent_history = [],assessment_history=[],is_open=True, version="V1", tools = None, memory=None) -> None:
         self.pb,self.sol = pb,sol
         self.open = is_open
         self.model = model
@@ -187,7 +187,7 @@ class GraphTutor(Tutor):
         )
 
         # Initialize memory to persist state between graph runs
-        checkpointer = MemorySaver()
+        checkpointer = memory or MemorySaver()
 
         # Finally, we compile it!
         # This compiles it into a LangChain Runnable,
