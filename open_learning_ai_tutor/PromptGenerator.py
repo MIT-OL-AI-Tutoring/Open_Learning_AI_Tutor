@@ -151,7 +151,7 @@ Provide the least amount of scaffolding possible to help the student solve the p
             intent_prompt += "Bolster the student's confidence.\n"
         if Intent.A_CONTROL in intents:
             intent_prompt += "Promote a sense of control.\n"
-        if Intent.A_CURIOUSITY in intents:
+        if Intent.A_CURIOSITY in intents:
             intent_prompt += ""#"Evoke curiosity.\n" #TODO implement curiosity/teaching
         if Intent.G_GREETINGS in intents:
             intent_prompt += "Say goodbye and end the conversation\n"
