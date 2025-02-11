@@ -1,13 +1,12 @@
 # By Romain Puech, Jan 2025
 import os
 import json
-import Tutor 
-import Assessor
-import IntentSelector
-import PromptGenerator
-import Intermediary
-from taxonomy import Intent
-from utils import json_to_messages, json_to_intent_list, messages_to_json, intent_list_to_json
+import open_learning_ai_tutor.Tutor  as Tutor
+import open_learning_ai_tutor.Assessor as Assessor
+import open_learning_ai_tutor.IntentSelector as IntentSelector
+import open_learning_ai_tutor.PromptGenerator as PromptGenerator
+import open_learning_ai_tutor.Intermediary as Intermediary
+from open_learning_ai_tutor.utils import json_to_messages, json_to_intent_list, messages_to_json, intent_list_to_json
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage, ToolMessage
 from langchain_openai import ChatOpenAI
 from langchain_core.tools import tool
