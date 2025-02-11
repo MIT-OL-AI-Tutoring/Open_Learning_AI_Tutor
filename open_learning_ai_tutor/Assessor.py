@@ -69,7 +69,7 @@ Answer in the following JSON format ONLY and do not output anything else:
 }}
 ##
 Analyze the last student's utterance.
-{{"""
+"""
         return purpose
 
     def create_prompt(self,pb,sol,tutor_messages,student_messages):
@@ -134,7 +134,7 @@ Analyze the last student's utterance.
         return assessment, self.history
     
 class GraphAssessor2(Assessor):
-    def __init__(self,model,assessment_history=[],new_messages=[], options = def_options) -> None:
+    def __init__(self,model,assessment_history=[],new_messages=[], options = {}) -> None:
         # init
         
         self.model = model
