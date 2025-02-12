@@ -90,7 +90,19 @@ class Tutor():
  
 class GraphTutor2(Tutor):
 
-    def __init__(self,client,pb,sol,model="gpt-4o-mini",intermediary=None,intent_history = [],assessment_history=[],tools = None, options = dict()) -> None:
+    def __init__(
+            self,
+            client,
+            pb,
+            sol,
+            model="gpt-4o-mini",
+            intermediary=None,
+            intent_history = [],
+            assessment_history=[],
+            tools = None,
+            memory=None,
+            options = dict(), 
+        ) -> None:
         self.pb,self.sol = pb,sol
         if "open" in options:
             self.open = options["open"]
@@ -199,7 +211,7 @@ class GraphTutor2(Tutor):
         )
 
         # Initialize memory to persist state between graph runs
-        checkpointer = MemorySaver()
+        checkpointer = memory or MemorySaver()
 
         app = workflow.compile(checkpointer=checkpointer)
         self.app = app
