@@ -134,7 +134,7 @@ Analyze the last student's utterance.
         return assessment, self.history
     
 class GraphAssessor2(Assessor):
-    def __init__(self,model,assessment_history=[],new_messages=[], options = {}) -> None:
+    def __init__(self,model, client=None, assessment_history=[],new_messages=[], options = {}) -> None:
         # init
         
         self.model = model
@@ -171,15 +171,15 @@ class GraphAssessor2(Assessor):
             self.tools = [execute_python,calculator]
         
         # model
-
-        if "gpt" in model:
-            client = ChatOpenAI(model=model, temperature=0.0, top_p=0.1, max_tokens=300) #response_format = { "type": "json_object" }
-        elif "claude" in model:
-            client = ChatAnthropic(model=model, temperature=0.0, top_p=0.1, max_tokens=300)
-        elif "llama" in model or "Llama" in model:
-            client = ChatTogether(model=model, temperature=0.0, top_p=0.1, max_tokens=300)
-        else:
-            raise ValueError("Model not supported")
+        if not client:
+            if "gpt" in model:
+                client = ChatOpenAI(model=model, temperature=0.0, top_p=0.1, max_tokens=300) #response_format = { "type": "json_object" }
+            elif "claude" in model:
+                client = ChatAnthropic(model=model, temperature=0.0, top_p=0.1, max_tokens=300)
+            elif "llama" in model or "Llama" in model:
+                client = ChatTogether(model=model, temperature=0.0, top_p=0.1, max_tokens=300)
+            else:
+                raise ValueError("Model not supported")
 
         tool_node = None  
         if self.tools != None and self.tools != []:
