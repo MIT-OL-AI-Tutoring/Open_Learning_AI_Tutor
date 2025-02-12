@@ -223,8 +223,7 @@ class GraphTutor2(Tutor):
         prompt,intent,assessment,metadata = self.intermediary.get_prompt2(self.pb,self.sol)
 
         final_state = self.app.invoke(
-            {"messages": prompt},
-            config={"configurable": {"thread_id": 42}}
+            {"messages": prompt}
         )
 
         return final_state, intent, assessment, metadata
