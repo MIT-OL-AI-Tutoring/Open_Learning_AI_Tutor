@@ -334,7 +334,6 @@ class GraphAssessor2(Assessor):
 
             final_state = self.app.invoke(
             {"messages": prompt},
-            config={"configurable": {"thread_id": 42}}
             )
             print("final state is:")
             print(final_state)
