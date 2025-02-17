@@ -12,9 +12,6 @@ from langchain_openai import ChatOpenAI
 from langchain_core.tools import tool
 import concurrent.futures
 
-openai_key = "key"
-os.environ["OPENAI_API_KEY"] = openai_key
-
 ## functions called internally by StratL to interract with exernal app
 def StratL_json_input_to_python(problem: str, solution: str, client, new_messages: str, chat_history: str, assessment_history: str, intent_history: str, options: str, tools: list = []):
     chat_history = json_to_messages(chat_history)

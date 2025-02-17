@@ -211,7 +211,10 @@ class GraphAssessor2(Assessor):
         # Define the function that calls the model
         def call_model(state: MessagesState):
             messages = state['messages']
-            response = self.client.invoke(messages)
+            response = self.client.invoke(
+                messages,
+                config={"configurable": {"thread_id": 42}}
+            )
             # We return a list, because this will get added to the existing list
             return {"messages": [response]}
         
@@ -334,6 +337,7 @@ class GraphAssessor2(Assessor):
 
             final_state = self.app.invoke(
             {"messages": prompt},
+            config={"configurable": {"thread_id": 42}}
             )
             print("final state is:")
             print(final_state)
