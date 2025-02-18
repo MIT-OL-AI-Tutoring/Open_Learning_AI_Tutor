@@ -138,7 +138,7 @@ def _single_message_tutor(problem: str, solution: str, client, new_messages: str
     problem, solution, client, new_messages, chat_history, assessment_history, intent_history, options, tools = StratL_json_input_to_python(problem, solution, client, new_messages, chat_history, assessment_history, intent_history, options, tools)
     model = client.model_name
     
-    assessor = Assessor.GraphAssessor2(model, assessment_history=assessment_history, new_messages=new_messages, options = options)
+    assessor = Assessor.GraphAssessor2(model, client=client, assessment_history=assessment_history, new_messages=new_messages, options = options)
     intentSelector = IntentSelector.SimpleIntentSelector2(intent_history)
     promptGenerator = PromptGenerator.SimplePromptGenerator2(chat_history = chat_history, options = options)
     intermediary = Intermediary.GraphIntermediary2(model, assessor = assessor, intentSelector = intentSelector, promptGenerator = promptGenerator)
