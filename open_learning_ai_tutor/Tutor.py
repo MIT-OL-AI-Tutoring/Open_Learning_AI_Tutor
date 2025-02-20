@@ -100,7 +100,6 @@ class GraphTutor2(Tutor):
             intent_history = [],
             assessment_history=[],
             tools = None,
-            memory=None,
             options = dict(), 
         ) -> None:
         self.pb,self.sol = pb,sol
@@ -211,7 +210,7 @@ class GraphTutor2(Tutor):
         )
 
         # Initialize memory to persist state between graph runs
-        checkpointer = memory or MemorySaver()
+        checkpointer = MemorySaver()
 
         app = workflow.compile(checkpointer=checkpointer)
         self.app = app

@@ -508,7 +508,7 @@ if True:
             st.session_state['chat_history'].extend([HumanMessage(content=student_utterance)])
             
             # Get tutor response
-            json_output = message_tutor(*convert_StratL_input_to_json(st.session_state['pb'], st.session_state['sol'], client, st.session_state['new_messages'], st.session_state['chat_history'], st.session_state['assessment_history'], st.session_state['intent_history'], st.session_state['options']),tools = tutor_tools, A_B_test = False)
+            json_output = message_tutor(*convert_StratL_input_to_json(st.session_state['pb'], st.session_state['sol'], client, st.session_state['new_messages'], st.session_state['chat_history'], st.session_state['assessment_history'], st.session_state['intent_history'], st.session_state['options']),tools = tutor_tools, A_B_test = True)
             time_taken = time.time() - time_of_question
             st.session_state['execution_time'].append(time_taken)
             new_chat_history,new_intent_history,new_assessment_history,metadata = process_StratL_json_output(json_output)
