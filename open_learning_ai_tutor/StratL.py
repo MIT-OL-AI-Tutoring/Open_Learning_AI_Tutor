@@ -1,20 +1,16 @@
 # By Romain Puech, Jan 2025
 import os
 import json
-import Tutor 
-import Assessor
-import IntentSelector
-import PromptGenerator
-import Intermediary
-from taxonomy import Intent
-from utils import json_to_messages, json_to_intent_list, messages_to_json, intent_list_to_json
+import open_learning_ai_tutor.Tutor  as Tutor
+import open_learning_ai_tutor.Assessor as Assessor
+import open_learning_ai_tutor.IntentSelector as IntentSelector
+import open_learning_ai_tutor.PromptGenerator as PromptGenerator
+import open_learning_ai_tutor.Intermediary as Intermediary
+from open_learning_ai_tutor.utils import json_to_messages, json_to_intent_list, messages_to_json, intent_list_to_json
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage, ToolMessage
 from langchain_openai import ChatOpenAI
 from langchain_core.tools import tool
 import concurrent.futures
-
-openai_key = "key"
-os.environ["OPENAI_API_KEY"] = openai_key
 
 ## functions called internally by StratL to interract with exernal app
 def StratL_json_input_to_python(problem: str, solution: str, client, new_messages: str, chat_history: str, assessment_history: str, intent_history: str, options: str, tools: list = []):
@@ -142,7 +138,7 @@ def _single_message_tutor(problem: str, solution: str, client, new_messages: str
     problem, solution, client, new_messages, chat_history, assessment_history, intent_history, options, tools = StratL_json_input_to_python(problem, solution, client, new_messages, chat_history, assessment_history, intent_history, options, tools)
     model = client.model_name
     
-    assessor = Assessor.GraphAssessor2(model, assessment_history=assessment_history, new_messages=new_messages, options = options)
+    assessor = Assessor.GraphAssessor2(model, client=client, assessment_history=assessment_history, new_messages=new_messages, options = options)
     intentSelector = IntentSelector.SimpleIntentSelector2(intent_history)
     promptGenerator = PromptGenerator.SimplePromptGenerator2(chat_history = chat_history, options = options)
     intermediary = Intermediary.GraphIntermediary2(model, assessor = assessor, intentSelector = intentSelector, promptGenerator = promptGenerator)
